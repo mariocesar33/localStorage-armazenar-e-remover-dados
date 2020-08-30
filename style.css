@@ -78,7 +78,9 @@ button:hover {
 
 .image.fav:hover:after {
   content: ' \2605';
+  
 }
+
 
 img {
   width: 100%;

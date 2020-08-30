@@ -2,14 +2,11 @@
 let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 const imageContainer = document.querySelector('.image');
 
-// clicar no botão, pegar imagem externa
+// eventos
 document.querySelector('button').onclick = () => updateImage();
-
-
-// clicar em cima da image
 imageContainer.onclick = () => updateAll();
 
-//      ---- Metodos -----
+// ---- Metodos -----
 
 function getState() {
   const imageSource = document.querySelector('.image img').src;
@@ -28,26 +25,24 @@ function updateAll() {
 function updateFavorites() {
   const { existsInLocalStorage, index, imageSource } = getState();
 
-  if(existsInLocalStorage) {
-    favorites.splice(index, 1);
-
-  } else {
-    // introduzir as url das imagens dentro do array
-    favorites.push(imageSource);
-  }
-
-  // salvar o array de imagens no localStorage
+  existsInLocalStorage ? favorites.splice(index, 1) : favorites.push(imageSource);
+ 
   localStorage.setItem('favorites', JSON.stringify(favorites));
 }
 
 function updateClasses() {
-  
+  const { existsInLocalStorage } = getState();
+
+  imageContainer.classList.remove('fav');
 
   if(existsInLocalStorage) {
-    imageContainer.classList.remove('fav');
-  } else {
     imageContainer.classList.add('fav');
-  }
+  } 
+}
+
+async function updateImage() {
+  await getExternalImage();
+  updateClasses();
 }
 
 async function getExternalImage() {
@@ -58,7 +53,4 @@ async function getExternalImage() {
 
 getExternalImage();
 
-function updateImage() {
-  getExternalImage();
-  updateClasses();
-}
+
