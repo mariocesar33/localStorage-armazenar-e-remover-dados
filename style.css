@@ -5,6 +5,7 @@
   --primary: #fd951f;
   --primary-dark: #dd7b0c;
   --white: #f0f0f9;
+  --primaryOpacity: rgba(253, 149, 31, 0.8);;
 }
 
 * {
@@ -60,7 +61,7 @@ button:hover {
 }
 
 .image {
-  height: 80vh;
+  height: 70vh;
   position: relative;
 }
 
@@ -86,4 +87,70 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+ 
+  margin-top: 10px;
+  position: relative;
+}
+
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 1%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: var(--primaryOpacity);
+}
+
+.row {
+  height: 15vh;
+  flex-direction: row;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.favorios {
+  display: flex;
+  height: 100%;
+  width: 16.66%;
+  object-fit: cover;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
 }
